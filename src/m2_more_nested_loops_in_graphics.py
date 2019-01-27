@@ -30,6 +30,25 @@ def run_test_draw_upside_down_wall():
 
 
 def draw_upside_down_wall(rectangle, n, window):
+    width = rectangle.get_width()
+    height = rectangle.get_height()
+    urx = rectangle._upper_right_corner.x
+    initial_urx = rectangle._upper_right_corner.x
+    ury = rectangle._upper_right_corner.y
+    initial_llx = rectangle._lower_left_corner.x
+    llx = rectangle._lower_left_corner.x
+    lly = rectangle._lower_left_corner.y
+    for j in range(n):
+        for k in range(j+1):
+            new_rect = rg.Rectangle(rg.Point(urx,ury),rg.Point(llx,lly))
+            new_rect.attach_to(window)
+            window.render()
+            urx = urx + width
+            llx = llx + width
+        ury = ury - height
+        lly = lly - height
+        urx = initial_urx - 0.5*width * (j + 1)
+        llx = initial_llx - 0.5 * width * (j + 1)
     """
     See   MoreWalls.pdf   in this project for pictures that may
     help you better understand the following specification:
@@ -50,7 +69,7 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # -------------------------------------------------------------------------
 
